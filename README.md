@@ -1,6 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
+# Getting Started
 
 First, run the development server:
 
@@ -16,21 +14,38 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Implementation Report
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+How to run test:
 
-## Learn More
+```bash
+npm test
+# or
+yarn test
+# or
+pnpm test
+# or
+bun test
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Function 1: get_1_or_0
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Description:** Returns either `1` or `0` with equal probability.
+- **Tests:**
+  - Verified that both `0` and `1` are generated over 1000 trials.
+  - Passed all edge cases.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Function 2: get_random
 
-## Deploy on Vercel
+- **Description:** Generates a random integer between `0` and `n`.
+- **Tests:**
+  - Confirmed outputs are within the range [0, n] across multiple runs.
+  - Validated functionality for edge cases:
+    - n = 0: Always returns 0.
+    - Negative n: Throws an appropriate error.
+  - Verified uniform distribution of values over 1000 trials.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Results:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- All tests passed.
+- The implementation produces consistent and expected results.
