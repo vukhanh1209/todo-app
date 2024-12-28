@@ -5,6 +5,7 @@ import { todoState } from "@/recoil/todo";
 import { toast } from "sonner";
 import { TODO_STATUS_ENUM } from "@/enums/todo-status.enum";
 import { Checkbox } from "@/components/ui/checkbox";
+import { cn } from "@/utils/cn.util";
 
 type Props = {
   item: Todo;
@@ -44,14 +45,22 @@ export default function TodoItem({ item }: Props) {
     }
   };
   return (
-    <div className="rounded-md border border-gray-300 p-3 bg-white hover:bg-gray-100 transition-colors duration-200 cursor-pointer">
+    <div
+      className={cn(
+        "rounded-md border border-gray-300 p-3",
+        item.status === TODO_STATUS_ENUM.IN_PROGRESS &&
+          "hover:bg-gray-100 transition-colors duration-200 cursor-pointer bg-white",
+        item.status === TODO_STATUS_ENUM.COMPLETED &&
+          "bg-gray-100 cursor-default"
+      )}
+    >
       <div className="flex items-center justify-between">
         <h6 className="text-base md:text-xl font-medium">{item.title}</h6>
-
         <Checkbox
           checked={isChecked}
           onCheckedChange={handleCheckboxChange}
           className="ml-2 w-5 md:w-6 h-5 md:h-6"
+          onClick={(e) => e.stopPropagation()}
         />
       </div>
       <p className="line-clamp-2 text-base md:text-sm">{item.description}</p>
