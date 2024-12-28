@@ -8,11 +8,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { TODO_STATUS_ENUM } from "@/enums/todo-status.enum";
+import { useMemo } from "react";
 
 export default function StatusFilter() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const status = searchParams.get("status") || "all";
+  const status = useMemo(
+    () => searchParams.get("status") || "all",
+    [searchParams.get("status")]
+  );
 
   const handleFilterChange = (newStatus: string) => {
     const params = new URLSearchParams(searchParams);

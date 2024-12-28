@@ -12,12 +12,16 @@ import { categoryState } from "@/recoil/category";
 import Link from "next/link";
 import { ROUTES } from "@/constants/route.constant";
 import { LightEditIcon } from "../icons";
+import { useMemo } from "react";
 
 export default function CategoryFilter() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const categories = useRecoilValue(categoryState);
-  const category = searchParams.get("category") || "all";
+  const category = useMemo(
+    () => searchParams.get("category") || "all",
+    [searchParams.get("category")]
+  );
 
   const handleFilterChange = (newCategory: string) => {
     const params = new URLSearchParams(searchParams);
