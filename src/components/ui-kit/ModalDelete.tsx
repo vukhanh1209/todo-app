@@ -18,7 +18,7 @@ type Props = {
   description: string;
 };
 
-export default function ModalDeleteTodo({
+export default function ModalDelete({
   isOpen,
   onClose,
   onConfirm,

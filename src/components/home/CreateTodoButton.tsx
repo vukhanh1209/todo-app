@@ -12,7 +12,7 @@ import FormCreateTodo from "./FormCreateTodo";
 import { useState } from "react";
 import { PlusIcon } from "../icons";
 
-export default function CreateButton() {
+export default function CreateTodoButton() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => setIsOpen(true);

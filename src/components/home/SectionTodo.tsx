@@ -4,7 +4,7 @@ import { todoState } from "@/recoil/todo";
 import { useEffect } from "react";
 import TodoList from "./TodoList";
 
-export default function TodoSection() {
+export default function SectionTodo() {
   const [todos, setTodos] = useRecoilState(todoState);
   const inProgressItems = todos.filter((todo) => todo.status === "in_progress");
   const completedItems = todos.filter((todo) => todo.status === "completed");
@@ -16,7 +16,7 @@ export default function TodoSection() {
   }, [setTodos]);
 
   return (
-    <div className="grid grid-cols-2 gap-3 md:gap-5 my-10">
+    <section className="grid grid-cols-2 gap-3 md:gap-5 my-10">
       <div className="rounded-lg bg-gray-50">
         <div className="flex items-center gap-2 p-4">
           <span className="text-blue-700 bg-blue-100 rounded-lg px-2 font-medium">
@@ -35,6 +35,6 @@ export default function TodoSection() {
         </div>
         <TodoList list={completedItems} />
       </div>
-    </div>
+    </section>
   );
 }

@@ -24,7 +24,7 @@ import {
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { todoByIdState, todoState } from "@/recoil/todo";
 import { useState } from "react";
-import ModalDeleteTodo from "./ModalDeleteTodo";
+import ModalDelete from "../ui-kit/ModalDelete";
 
 const formSchema = z.object({
   title: z.string(),
@@ -176,7 +176,7 @@ export default function FormUpdateTodo({ todoId, onSuccess }: Props) {
           </div>
         </form>
       </Form>
-      <ModalDeleteTodo
+      <ModalDelete
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
         onConfirm={handleDelete}
