@@ -1,5 +1,5 @@
 import CreateButton from "@/components/home/CreateButton";
-import TodoList from "@/components/home/TodoList";
+import TodoSection from "@/components/home/TodoSection";
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
         <h1 className="text-black font-bold text-xl md:text-3xl">Todo List</h1>
         <CreateButton />
       </div>
-      <TodoList />
+      <TodoSection />
     </div>
   );
 }

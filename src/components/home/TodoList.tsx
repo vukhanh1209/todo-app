@@ -1,21 +1,14 @@
-"use client";
-import { useRecoilState } from "recoil";
-import { todoState } from "@/recoil/todo";
-import { useEffect } from "react";
 import TodoItem from "./TodoItem";
+import { Todo } from "@/types/todo.type";
 
-export default function TodoList() {
-  const [todos, setTodos] = useRecoilState(todoState);
+type Props = {
+  list: Todo[];
+};
 
-  useEffect(() => {
-    fetch("/api/todo")
-      .then((response) => response.json())
-      .then((data) => setTodos(data));
-  }, [setTodos]);
-
+export default function TodoList({ list }: Props) {
   return (
-    <div className="flex flex-col gap-4 py-10">
-      {todos.map((todo) => (
+    <div className="flex flex-col gap-2 px-2">
+      {list.map((todo) => (
         <TodoItem key={todo.id} item={todo} />
       ))}
     </div>

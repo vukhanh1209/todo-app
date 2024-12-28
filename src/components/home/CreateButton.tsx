@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import FormCreateTodo from "./FormCreateTodo";
 import { useState } from "react";
+import { PlusIcon } from "../icons";
 
 export default function CreateButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,9 @@ export default function CreateButton() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button onClick={handleOpen}>+</Button>
+        <Button onClick={handleOpen} className="w-9 h-9">
+          <PlusIcon className="w-4 h-4" />
+        </Button>
       </DialogTrigger>
       <DialogContent className="py-10">
         <DialogHeader>
