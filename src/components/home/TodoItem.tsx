@@ -55,7 +55,7 @@ export default function TodoItem({ item }: Props) {
       )}
     >
       <div className="flex items-center justify-between">
-        <h6 className="text-base md:text-xl font-medium truncate text-ellipsis">
+        <h6 className="text-sm md:text-lg font-medium truncate text-ellipsis">
           {item.title}
         </h6>
         <Checkbox
@@ -65,7 +65,7 @@ export default function TodoItem({ item }: Props) {
           onClick={(e) => e.stopPropagation()}
         />
       </div>
-      <p className="line-clamp-2 text-base md:text-sm">{item.description}</p>
+      <p className="line-clamp-2 text-xs md:text-sm">{item.description}</p>
     </div>
   );
 }

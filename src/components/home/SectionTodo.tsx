@@ -12,12 +12,16 @@ export default function SectionTodo() {
   const searchParams = useSearchParams();
   const status = searchParams.get("status") || "all";
   const category = searchParams.get("category") || "all";
+  const searchQuery = searchParams.get("search") || "";
 
   const filteredTodos = todos.filter((todo) => {
     const statusMatch = status === "all" || todo.status === status;
     const categoryMatch =
       category === "all" || todo.categoryId?.toString() === category;
-    return statusMatch && categoryMatch;
+    const searchMatch = todo.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    return statusMatch && categoryMatch && searchMatch;
   });
 
   const inProgressItems = filteredTodos.filter(
@@ -41,7 +45,7 @@ export default function SectionTodo() {
     <section className="grid grid-cols-2 gap-3 md:gap-5">
       <div>
         <div className="rounded-lg bg-gray-50 pb-4 ">
-          <div className="flex items-center gap-2 p-4">
+          <div className="flex items-center gap-2 p-4 text-sm md:text-base">
             <span className="text-blue-700 bg-blue-100 rounded-lg px-2 font-medium">
               In Progress
             </span>
@@ -52,7 +56,7 @@ export default function SectionTodo() {
       </div>
       <div>
         <div className="rounded-lg bg-gray-50 pb-4 ">
-          <div className="flex items-center gap-2 p-4">
+          <div className="flex items-center gap-2 p-4 text-sm md:text-base">
             <span className="text-green-700 bg-green-100 rounded-lg px-2 font-medium">
               Completed
             </span>
