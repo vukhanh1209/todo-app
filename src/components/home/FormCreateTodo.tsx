@@ -21,8 +21,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { todoState } from "@/recoil/todo";
+import { categoryState } from "@/recoil/category";
 
 const formSchema = z.object({
   title: z.string(),
@@ -35,6 +36,7 @@ type Props = {
 };
 
 export default function FormCreateTodo({ onSuccess }: Props) {
+  const categories = useRecoilValue(categoryState);
   const setTodos = useSetRecoilState(todoState);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,7 +49,10 @@ export default function FormCreateTodo({ onSuccess }: Props) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          categoryId: values.category ? parseInt(values.category) : null,
+        }),
       });
 
       if (!response.ok) {
@@ -120,9 +125,14 @@ export default function FormCreateTodo({ onSuccess }: Props) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
+                  {categories.map((category) => (
+                    <SelectItem
+                      key={category.id}
+                      value={category.id.toString()}
+                    >
+                      {category.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
 

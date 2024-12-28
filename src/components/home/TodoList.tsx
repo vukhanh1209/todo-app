@@ -28,17 +28,19 @@ export default function TodoList({ list }: Props) {
 
   return (
     <>
-      <div className="flex flex-col gap-2 px-2 pb-4">
-        {list?.map((todo) => (
-          <div
-            key={todo.id}
-            role="button"
-            onClick={() => handleClickTodoItem(todo)}
-          >
-            <TodoItem key={todo.id} item={todo} />
-          </div>
-        ))}
-      </div>
+      {list.length > 0 && (
+        <div className="flex flex-col gap-2 px-2 max-h-[40vh] overflow-y-scroll">
+          {list?.map((todo) => (
+            <div
+              key={todo.id}
+              role="button"
+              onClick={() => handleClickTodoItem(todo)}
+            >
+              <TodoItem key={todo.id} item={todo} />
+            </div>
+          ))}
+        </div>
+      )}
       <Dialog open={isUpdateModalOpen} onOpenChange={setIsUpdateModalOpen}>
         <DialogContent className="py-10">
           <DialogHeader>

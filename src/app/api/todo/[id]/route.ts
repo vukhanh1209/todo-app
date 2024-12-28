@@ -15,7 +15,7 @@ export async function PUT(
         title,
         description,
         status,
-        categoryId,
+        category: categoryId ? { connect: { id: categoryId } } : undefined,
       },
     });
     return NextResponse.json(updatedTodo);
@@ -49,7 +49,7 @@ export async function GET(
   try {
     const todo = await prisma.todo.findUnique({
       where: { id: todoId },
-      include: { category: true }, // Optionally include category data
+      include: { category: true },
     });
 
     if (!todo) {

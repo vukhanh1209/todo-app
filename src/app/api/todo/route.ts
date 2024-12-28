@@ -13,7 +13,8 @@ export async function POST(request: Request) {
       data: {
         title,
         description: description || null,
-        ...(categoryId ? { category: { connect: { id: categoryId } } } : {}),
+        // ...(categoryId ? { category: { connect: { id: categoryId } } } : {}),
+        category: categoryId ? { connect: { id: categoryId } } : undefined,
       },
     });
     return NextResponse.json(newTodo, { status: 201 });

@@ -27,7 +27,7 @@ export default function StatusFilter() {
   return (
     <div className="flex gap-4">
       <Select onValueChange={handleFilterChange} defaultValue={status}>
-        <SelectTrigger className="w-fit gap-2">
+        <SelectTrigger className="w-full md:w-fit gap-2">
           <SelectValue placeholder="Select status" />
         </SelectTrigger>
         <SelectContent align="end">

@@ -25,6 +25,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { todoByIdState, todoState } from "@/recoil/todo";
 import { useState } from "react";
 import ModalDelete from "../ui-kit/ModalDelete";
+import { categoryState } from "@/recoil/category";
 
 const formSchema = z.object({
   title: z.string(),
@@ -39,6 +40,7 @@ type Props = {
 
 export default function FormUpdateTodo({ todoId, onSuccess }: Props) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const categories = useRecoilValue(categoryState);
   const todo = useRecoilValue(todoByIdState)(todoId);
   const setTodos = useSetRecoilState(todoState);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -46,7 +48,7 @@ export default function FormUpdateTodo({ todoId, onSuccess }: Props) {
     defaultValues: {
       title: todo?.title,
       description: todo?.description,
-      category: todo?.category?.id.toString(),
+      category: todo?.categoryId?.toString() || "",
     },
   });
 
@@ -57,7 +59,10 @@ export default function FormUpdateTodo({ todoId, onSuccess }: Props) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          categoryId: values.category ? parseInt(values.category) : null,
+        }),
       });
 
       if (!response.ok) {
@@ -65,6 +70,7 @@ export default function FormUpdateTodo({ todoId, onSuccess }: Props) {
       }
 
       const updatedTodo = await response.json();
+      console.log("🚀 ~ onSubmit ~ updatedTodo:", updatedTodo);
       setTodos((prevTodos) =>
         prevTodos.map((t) => (t.id === updatedTodo.id ? updatedTodo : t))
       );
@@ -150,13 +156,20 @@ export default function FormUpdateTodo({ todoId, onSuccess }: Props) {
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="" />
+                      <SelectValue
+                        placeholder={field.value || "Select a category"}
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="m@example.com">m@example.com</SelectItem>
-                    <SelectItem value="m@google.com">m@google.com</SelectItem>
-                    <SelectItem value="m@support.com">m@support.com</SelectItem>
+                    {categories.map((category) => (
+                      <SelectItem
+                        key={category.id}
+                        value={category.id.toString()}
+                      >
+                        {category.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
 

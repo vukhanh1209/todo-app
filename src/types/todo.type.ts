@@ -7,5 +7,6 @@ export type Todo = {
   description: string;
   status: Status;
   category: Category;
+  categoryId: number;
   createdAt: string;
 };
