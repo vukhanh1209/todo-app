@@ -21,8 +21,9 @@ export default function CreateTodoButton() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button onClick={handleOpen} className="w-9 h-9">
+        <Button onClick={handleOpen} className="h-9">
           <PlusIcon className="w-4 h-4" />
+          Create
         </Button>
       </DialogTrigger>
       <DialogContent className="py-10">

@@ -9,6 +9,7 @@ const primaryFont = Roboto({
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-primary",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${primaryFont.className} antialiased`}>
+      <body className={`${primaryFont.variable} font-primary antialiased`}>
         <ProviderRecoil>{children}</ProviderRecoil>
         <Toaster richColors />
       </body>
