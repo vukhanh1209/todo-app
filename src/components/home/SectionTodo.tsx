@@ -11,10 +11,13 @@ export default function SectionTodo() {
   const setCategories = useSetRecoilState(categoryState);
   const searchParams = useSearchParams();
   const status = searchParams.get("status") || "all";
+  const category = searchParams.get("category") || "all";
 
   const filteredTodos = todos.filter((todo) => {
-    if (status === "all") return true;
-    return todo.status === status;
+    const statusMatch = status === "all" || todo.status === status;
+    const categoryMatch =
+      category === "all" || todo.categoryId?.toString() === category;
+    return statusMatch && categoryMatch;
   });
 
   const inProgressItems = filteredTodos.filter(

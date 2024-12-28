@@ -70,7 +70,6 @@ export default function FormUpdateTodo({ todoId, onSuccess }: Props) {
       }
 
       const updatedTodo = await response.json();
-      console.log("🚀 ~ onSubmit ~ updatedTodo:", updatedTodo);
       setTodos((prevTodos) =>
         prevTodos.map((t) => (t.id === updatedTodo.id ? updatedTodo : t))
       );

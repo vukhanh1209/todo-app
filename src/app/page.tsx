@@ -10,7 +10,9 @@ export default function Home() {
         <h1 className="text-black font-bold text-xl md:text-3xl">Todo List</h1>
         <CreateTodoButton />
       </div>
-      <SectionFilters />
+      <Suspense fallback={<div>Loading...</div>}>
+        <SectionFilters />
+      </Suspense>
 
       <Suspense fallback={<div>Loading...</div>}>
         <SectionTodo />
