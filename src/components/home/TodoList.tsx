@@ -7,7 +7,7 @@ type Props = {
 
 export default function TodoList({ list }: Props) {
   return (
-    <div className="flex flex-col gap-2 px-2">
+    <div className="flex flex-col gap-2 px-2 pb-4">
       {list.map((todo) => (
         <TodoItem key={todo.id} item={todo} />
       ))}
