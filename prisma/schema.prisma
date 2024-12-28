@@ -17,14 +17,14 @@ model Todo {
   id          Int       @id @default(autoincrement())
   title       String
   description String?
-  status      String    @default("to-do")
-  categoryId  Int
-  category    Category  @relation("CategoryTodos", fields: [categoryId], references: [id])
+  status      String    @default("in_progress")
+  categoryId  Int?
+  category    Category? @relation(fields: [categoryId], references: [id])
   createdAt   DateTime  @default(now())
 }
 
 model Category {
-  id    Int      @id @default(autoincrement())
-  name  String   @unique
-  todos Todo[]   @relation("CategoryTodos")
+  id    Int     @id @default(autoincrement())
+  name  String
+  todos Todo[]
 }

@@ -12,12 +12,13 @@ export async function POST(request: Request) {
     const newTodo = await prisma.todo.create({
       data: {
         title,
-        description,
-        categoryId: categoryId || null, // Category can be optional
+        description: description || null,
+        ...(categoryId ? { category: { connect: { id: categoryId } } } : {}),
       },
     });
     return NextResponse.json(newTodo, { status: 201 });
   } catch (error) {
+    console.log("🚀 ~ POST ~ error:", error);
     return NextResponse.json({ error }, { status: 500 });
   }
 }
