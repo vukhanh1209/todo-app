@@ -12,10 +12,10 @@ export default function CategoryItem({ category, onDelete, onEdit }: Props) {
   return (
     <div className="rounded-md border border-gray-300 p-3">
       <div key={category.id} className="flex justify-between items-center">
-        <span className="text-base md:text-xl font-medium">
+        <span className="text-base md:text-xl font-medium truncate text-ellipsis">
           {category.name}
         </span>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ml-5">
           <Button
             onClick={() => onEdit(category)}
             className="w-8 h-8 md:w-10 md:h-10"

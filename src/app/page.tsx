@@ -1,5 +1,7 @@
 import CreateTodoButton from "@/components/home/CreateTodoButton";
+import SectionFilters from "@/components/home/SectionFilters";
 import SectionTodo from "@/components/home/SectionTodo";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -8,7 +10,11 @@ export default function Home() {
         <h1 className="text-black font-bold text-xl md:text-3xl">Todo List</h1>
         <CreateTodoButton />
       </div>
-      <SectionTodo />
+      <SectionFilters />
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <SectionTodo />
+      </Suspense>
     </div>
   );
 }

@@ -55,7 +55,9 @@ export default function TodoItem({ item }: Props) {
       )}
     >
       <div className="flex items-center justify-between">
-        <h6 className="text-base md:text-xl font-medium">{item.title}</h6>
+        <h6 className="text-base md:text-xl font-medium truncate text-ellipsis">
+          {item.title}
+        </h6>
         <Checkbox
           checked={isChecked}
           onCheckedChange={handleCheckboxChange}
