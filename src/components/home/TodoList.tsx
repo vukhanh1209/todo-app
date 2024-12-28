@@ -17,15 +17,15 @@ type Props = {
 };
 
 export default function TodoList({ list }: Props) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [todoId, setTodoId] = useState<number | null>(null);
 
   const handleClickTodoItem = (todo: Todo) => {
     if (todo.status === "completed") return;
-    setIsModalOpen(true);
+    setIsUpdateModalOpen(true);
     setTodoId(todo.id);
   };
-  const handleCloseModal = () => setIsModalOpen(false);
+  const handleCloseUpdateModal = () => setIsUpdateModalOpen(false);
 
   return (
     <>
@@ -40,7 +40,7 @@ export default function TodoList({ list }: Props) {
           </div>
         ))}
       </div>
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <Dialog open={isUpdateModalOpen} onOpenChange={setIsUpdateModalOpen}>
         <DialogContent className="py-10">
           <DialogHeader>
             <DialogTitle>Update Todo</DialogTitle>
@@ -49,7 +49,10 @@ export default function TodoList({ list }: Props) {
             </DialogDescription>
           </DialogHeader>
           {todoId && (
-            <FormUpdateTodo todoId={todoId} onSuccess={handleCloseModal} />
+            <FormUpdateTodo
+              todoId={todoId}
+              onSuccess={handleCloseUpdateModal}
+            />
           )}
         </DialogContent>
       </Dialog>
