@@ -14,6 +14,7 @@ type Props = {
 
 export default function CategoryList({ categories }: Props) {
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null
   );
@@ -21,10 +22,12 @@ export default function CategoryList({ categories }: Props) {
 
   const handleEdit = (category: Category) => {
     setSelectedCategory(category);
+    setIsEditModalOpen(true);
   };
 
   const handleDelete = (category: Category) => {
     setSelectedCategory(category);
+    setIsConfirmationModalOpen(true);
   };
 
   const handleConfirmDelete = async () => {
@@ -46,7 +49,6 @@ export default function CategoryList({ categories }: Props) {
       toast.success("Category deleted successfully!");
     } catch {
       toast.error("Failed to delete category.");
-      // Handle error
     }
   };
 
@@ -65,9 +67,9 @@ export default function CategoryList({ categories }: Props) {
 
       {selectedCategory && (
         <FormCategory
-          isOpen={!!selectedCategory}
+          isOpen={isEditModalOpen}
           category={selectedCategory}
-          onClose={() => setSelectedCategory(null)}
+          onClose={() => setIsEditModalOpen(false)}
         />
       )}
 
