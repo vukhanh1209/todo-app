@@ -134,6 +134,7 @@ export default function FormUpdateTodo({ todoId, onSuccess }: Props) {
                   <Textarea
                     placeholder="Enter the description here"
                     className="resize-none"
+                    rows={4}
                     {...field}
                   />
                 </FormControl>

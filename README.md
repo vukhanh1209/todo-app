@@ -1,6 +1,31 @@
 # Getting Started
 
-First, run the development server:
+## Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- Node.js (https://nodejs.org/)
+- npm (comes with Node.js) or yarn (https://yarnpkg.com/) or pnpm (https://pnpm.io/) or bun (https://bun.sh/)
+
+## Installation
+
+First, install the necessary packages:
+
+```bash
+# Using npm
+npm install
+
+# Using yarn
+yarn install
+
+# Using pnpm
+pnpm install
+
+# Using bun
+bun install
+```
+
+Second, run the development server:
 
 ```bash
 npm run dev
@@ -14,17 +39,21 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-# Implementation Report
+# Common Assignment
 
 How to run test:
 
 ```bash
+# Using npm
 npm test
-# or
+
+# Using yarn
 yarn test
-# or
+
+# Using pnpm
 pnpm test
-# or
+
+# Using bun
 bun test
 ```
 

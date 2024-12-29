@@ -65,7 +65,9 @@ export default function TodoItem({ item }: Props) {
           onClick={(e) => e.stopPropagation()}
         />
       </div>
-      <p className="line-clamp-2 text-xs md:text-sm">{item.description}</p>
+      <p className="line-clamp-2 text-xs md:text-sm whitespace-pre-wrap pr-4">
+        {item.description}
+      </p>
     </div>
   );
 }
