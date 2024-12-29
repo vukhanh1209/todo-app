@@ -108,7 +108,7 @@ export default function FormCategory({ category, isOpen, onClose }: Props) {
                 </FormItem>
               )}
             />
-            <DialogFooter>
+            <DialogFooter className="gap-y-3">
               <DialogClose asChild>
                 <Button variant="secondary" onClick={onClose}>
                   Cancel

@@ -32,7 +32,7 @@ export default function ModalDelete({
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
-        <DialogFooter>
+        <DialogFooter className="gap-y-3">
           <DialogClose asChild>
             <Button variant="secondary" onClick={onClose}>
               Cancel

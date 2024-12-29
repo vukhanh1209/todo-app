@@ -67,6 +67,7 @@ export default function CategoryList({ categories }: Props) {
 
       {selectedCategory && (
         <FormCategory
+          key={selectedCategory.id}
           isOpen={isEditModalOpen}
           category={selectedCategory}
           onClose={() => setIsEditModalOpen(false)}
